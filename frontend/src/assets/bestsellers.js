@@ -8,6 +8,7 @@ const bestsellers = [
     price: 50,
     offerPrice: 45,
     path: "dolo-500mg-tablet",
+    category: "pain-relief", // ✅ added
     createdAt: "2024-01-15T10:00:00Z",
     updatedAt: "2024-05-01T12:00:00Z",
     inStock: true
@@ -19,6 +20,7 @@ const bestsellers = [
     price: 120,
     offerPrice: 110,
     path: "glycomet-sr-500mg-tablet",
+    category: "diabetes-care", // ✅ added
     createdAt: "2024-02-10T09:30:00Z",
     updatedAt: "2024-05-03T14:15:00Z",
     inStock: false
@@ -30,6 +32,7 @@ const bestsellers = [
     price: 75,
     offerPrice: 70,
     path: "alergin-l-tablet",
+    category: "allergy-relief", // ✅ added
     createdAt: "2024-01-20T11:45:00Z",
     updatedAt: "2024-04-30T16:00:00Z",
     inStock: true
@@ -41,6 +44,7 @@ const bestsellers = [
     price: 150,
     offerPrice: 140,
     path: "aquasol-a-capsule",
+    category: "vitamin-supplements", // ✅ added
     createdAt: "2024-03-05T08:20:00Z",
     updatedAt: "2024-05-02T10:10:00Z",
     inStock: true
@@ -52,6 +56,7 @@ const bestsellers = [
     price: 90,
     offerPrice: 85,
     path: "aristozyme-capsule",
+    category: "digestive-care", // ✅ added
     createdAt: "2024-02-28T13:00:00Z",
     updatedAt: "2024-05-01T09:30:00Z",
     inStock: true
