@@ -5,7 +5,7 @@ import { useAppContext } from '../context/AppContext'
 
 function Navbar() {
     const [open, setOpen] = React.useState(false)
-    const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery, cartItems = [] } = useAppContext();
+    const { user, setUser, setShowUserLogin, navigate, setSearchQuery, searchQuery, cartItems = [] , getCartCount } = useAppContext();
     const location = useLocation();
 
     const logout = async () => {
@@ -48,9 +48,9 @@ function Navbar() {
                 {/* Cart Icon */}
                 <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
                     <img src={assets.nav_cart_icon} alt="Cart" className='w-6 opacity-80' />
-                    {cartItems.length > 0 && (
+                    {getCartCount() > 0 && (
                         <button className="absolute -top-2 -right-3 text-xs text-white bg-green-500 w-[18px] h-[18px] rounded-full">
-                            {cartItems.length}
+                            {getCartCount()}
                         </button>
                     )}
                 </div>
@@ -75,9 +75,21 @@ function Navbar() {
             </div>
 
             {/* Mobile Menu Button */}
-            <button onClick={() => setOpen(prev => !prev)} aria-label="Menu" className="sm:hidden">
-                <img src={assets.menu_icon} alt="Menu" />
-            </button>
+
+            <div className='flex items-center gap-6 sm:hidden'>
+                <div onClick={() => navigate("/cart")} className="relative cursor-pointer">
+                    <img src={assets.nav_cart_icon} alt="Cart" className='w-6 opacity-80' />
+                    {getCartCount() > 0 && (
+                        <button className="absolute -top-2 -right-3 text-xs text-white bg-green-500 w-[18px] h-[18px] rounded-full">
+                            {getCartCount()}
+                        </button>
+                    )}
+                </div>
+
+                <button onClick={() => setOpen(prev => !prev)} aria-label="Menu" className="">
+                    <img src={assets.menu_icon} alt="Menu" />
+                </button>
+            </div>
 
             {/* Mobile Menu */}
             {open && (

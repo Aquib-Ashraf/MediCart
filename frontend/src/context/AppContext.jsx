@@ -1,56 +1,55 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import bestsellersData from "../assets/bestsellers"; // Renamed import to avoid conflict with state variable
-import allProductsData from "../assets/products"; // Assuming "products.js" contains the 'products' array from the Canvas
+import bestsellersData from "../assets/bestsellers";
+import allProductsData from "../assets/products";
 import toast from "react-hot-toast";
 
 export const AppContext = createContext();
 
-export const AppContextProvider = ({children})=>{
+export const AppContextProvider = ({ children }) => {
 
-    const currency = import.meta.env.VITE_CURRENCY; // Corrected import.meta.VITE_CURRENCY to import.meta.env.VITE_CURRENCY
-
+    const currency = import.meta.env.VITE_CURRENCY;
     const navigate = useNavigate();
-    const [user , setUser] = useState(null);
-    const [isseller , setIsSeller] = useState(false);
-    const [showUserLogin , setShowUserLogin] = useState(false);
-    const [allProducts , setAllProducts] = useState([]); // State for all products
-    const [bestsellers , setBestsellers] = useState([]); // State for bestsellers
+    const [user, setUser] = useState(null);
+    const [isseller, setIsSeller] = useState(false);
+    const [showUserLogin, setShowUserLogin] = useState(false);
+    const [allProducts, setAllProducts] = useState([]);
+    const [bestsellers, setBestsellers] = useState([]);
+    const [cartItems, setCartItems] = useState({});
+    const [searchQuery, setSearchQuery] = useState({});
 
-    const [cartItems , setCartItems] = useState({});
-    const [searchQuery , setSearchQuery] = useState({});
-
-    // Function to fetch both product lists
-    const fetchProducts = async ()=>{
-        // Set all products from the data in the Canvas (assumed to be in assets/products.js)
+    const fetchProducts = async () => {
         setAllProducts(allProductsData);
-        // Set bestsellers from the imported bestsellersData
         setBestsellers(bestsellersData);
     };
 
-    const addToCart = (itemId)=>{
+    const addToCart = (itemId) => {
         let cartData = structuredClone(cartItems);
-        if(cartData[itemId]){
+        if (cartData[itemId]) {
             cartData[itemId] += 1;
-        }else{
+        } else {
             cartData[itemId] = 1;
         }
         setCartItems(cartData);
         toast.success("Added To Cart");
     };
 
-    const updateCartItem = (itemId , quantity)=>{
+    const updateCartItem = (itemId, quantity) => {
         let cartData = structuredClone(cartItems);
-        cartData[itemId] = quantity;
+        if (quantity > 0) {
+            cartData[itemId] = quantity;
+        } else {
+            delete cartData[itemId];
+        }
         setCartItems(cartData);
         toast.success("Cart Updated");
     };
 
-    const removeFromCart = (itemId)=>{
+    const removeFromCart = (itemId) => {
         let cartData = structuredClone(cartItems);
-        if(cartData[itemId]){
+        if (cartData[itemId]) {
             cartData[itemId] -= 1;
-            if(cartData[itemId] === 0){
+            if (cartData[itemId] === 0) {
                 delete cartData[itemId];
             }
         }
@@ -58,11 +57,31 @@ export const AppContextProvider = ({children})=>{
         setCartItems(cartData);
     };
 
-    useEffect(()=>{
-        fetchProducts();
-    },[]); // Empty dependency array means this runs once on component mount
+    const getCartCount = () => {
+        let totalCount = 0;
+        for (const item in cartItems) {
+            totalCount += cartItems[item];
+        }
+        return totalCount;
+    }
 
-    // Provide both allProducts and bestsellers in the context value
+    const getCartAmount = () => {
+        let totalAmount = 0;
+        for (const itemId in cartItems) {
+            // Convert itemId to number to match product IDs
+            const productId = parseInt(itemId);
+            let itemInfo = allProducts.find((product) => product.id === productId);
+            if (itemInfo && cartItems[itemId] > 0) {
+                totalAmount += itemInfo.offerPrice * cartItems[itemId];
+            }
+        }
+        return Math.round(totalAmount * 100) / 100;
+    };
+
+    useEffect(() => {
+        fetchProducts();
+    }, []);
+
     const value = {
         navigate,
         user,
@@ -71,17 +90,19 @@ export const AppContextProvider = ({children})=>{
         isseller,
         showUserLogin,
         setShowUserLogin,
-        allProducts, // Now provides all products
-        bestsellers, // Now provides bestsellers
+        allProducts,
+        bestsellers,
         currency,
         addToCart,
         updateCartItem,
         removeFromCart,
         cartItems,
         searchQuery,
-        setSearchQuery
+        setSearchQuery,
+        getCartAmount,
+        getCartCount
     };
-    
+
     return (
         <AppContext.Provider value={value}>
             {children}
@@ -89,6 +110,6 @@ export const AppContextProvider = ({children})=>{
     );
 };
 
-export const useAppContext = () =>{
+export const useAppContext = () => {
     return useContext(AppContext);
 };
