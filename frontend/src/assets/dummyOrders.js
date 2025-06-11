@@ -2,8 +2,9 @@ const dummyOrders = [
   {
     id: "ORD-1001",
     paymentType: "Online",
-    amount: 140, // 2 * 45 + 1 * 50
+    amount: 140,
     status: "Placed",
+    isPaid: true,
     items: [
       {
         productId: 1,
@@ -20,13 +21,24 @@ const dummyOrders = [
         total: 50
       }
     ],
+    address: {
+      firstName: "John",
+      lastName: "Doe",
+      street: "123 Main Street",
+      city: "New York",
+      state: "NY",
+      zipcode: "10001",
+      country: "USA",
+      phone: "+1-555-0123"
+    },
     createdAt: "2024-06-05T12:00:00Z"
   },
   {
     id: "ORD-1002",
     paymentType: "Cash on Delivery",
-    amount: 197, // 1 * 85 + 1 * 112
+    amount: 197,
     status: "Placed",
+    isPaid: false,
     items: [
       {
         productId: 5,
@@ -43,13 +55,24 @@ const dummyOrders = [
         total: 112
       }
     ],
+    address: {
+      firstName: "Jane",
+      lastName: "Smith",
+      street: "456 Oak Avenue",
+      city: "Los Angeles",
+      state: "CA",
+      zipcode: "90210",
+      country: "USA",
+      phone: "+1-555-0456"
+    },
     createdAt: "2024-06-01T09:00:00Z"
   },
   {
     id: "ORD-1003",
     paymentType: "Online",
-    amount: 83, // 1 * 55 + 1 * 28
+    amount: 83,
     status: "Placed",
+    isPaid: true,
     items: [
       {
         productId: 8,
@@ -66,6 +89,16 @@ const dummyOrders = [
         total: 28
       }
     ],
+    address: {
+      firstName: "Mike",
+      lastName: "Johnson",
+      street: "789 Pine Road",
+      city: "Chicago",
+      state: "IL",
+      zipcode: "60601",
+      country: "USA",
+      phone: "+1-555-0789"
+    },
     createdAt: "2024-05-28T16:30:00Z"
   }
 ];

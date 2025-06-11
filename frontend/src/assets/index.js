@@ -14,6 +14,11 @@ import cart_icon from './cart_icon.svg';
 import remove_icon from './remove_icon.svg';
 import arrow_right_icon_colored from './arrow_right_icon_colored.svg';
 import add_address_image from './add_address_image.svg';
+import add_icon from './add_icon.svg';
+import product_list_icon from './product_list_icon.svg';
+import order_icon from './order_icon.svg';
+import box_icon from './box_icon.svg';
+import upload_area from './upload_area.png';
 
 // Medicine images
 import Alergin_L_tablet_10s_1_0 from './medicines/Alergin_L_tablet_10s_1_0.jpg';
@@ -50,6 +55,11 @@ const assets = {
   remove_icon,
   arrow_right_icon_colored,
   add_address_image,
+  add_icon,
+  product_list_icon,
+  order_icon,
+  upload_area,
+  box_icon,
 
   // Medicine images
   Alergin_L_tablet_10s_1_0,

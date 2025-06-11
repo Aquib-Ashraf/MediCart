@@ -11,7 +11,7 @@ export const AppContextProvider = ({ children }) => {
     const currency = import.meta.env.VITE_CURRENCY;
     const navigate = useNavigate();
     const [user, setUser] = useState(null);
-    const [isseller, setIsSeller] = useState(false);
+    const [isSeller, setIsSeller] = useState(false);
     const [showUserLogin, setShowUserLogin] = useState(false);
     const [allProducts, setAllProducts] = useState([]);
     const [bestsellers, setBestsellers] = useState([]);
@@ -87,7 +87,7 @@ export const AppContextProvider = ({ children }) => {
         user,
         setUser,
         setIsSeller,
-        isseller,
+        isSeller,
         showUserLogin,
         setShowUserLogin,
         allProducts,
