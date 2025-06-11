@@ -34,7 +34,7 @@ function Navbar() {
       {/* Logo */}
       <NavLink to="/" onClick={() => setOpen(false)}>
         <img
-          className="h-12 w-19"
+          className="h-12 w-18"
           src="https://dynamic.brandcrowd.com/asset/logo/9222cd62-f6ac-4b55-b9f2-43b4d85ac0e4/logo-search-grid-2x?logoTemplateVersion=1&v=638755756797900000&text=Pharmacy&colorpalette=green"
           alt="Pharmacy Logo"
         />

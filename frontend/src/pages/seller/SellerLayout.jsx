@@ -18,21 +18,22 @@ const SellerLayout = () => {
 
   return (
     <>
-      <div className="flex items-center justify-between px-4 md:px-8 border-b border-gray-300 py-3 bg-white">
-        <Link to="/">
-          <img
-            src="https://dynamic.brandcrowd.com/asset/logo/9222cd62-f6ac-4b55-b9f2-43b4d85ac0e4/logo-search-grid-2x?logoTemplateVersion=1&v=638755756797900000&text=Pharmacy&colorpalette=green"
-            alt="logo"
-            className="cursor-pointer w-34 md:w-38"
-          />
-        </Link>
-        <div className="flex items-center gap-5 text-gray-500">
-          <p>Hi! Admin</p>
-          <button onClick={logout} className="border rounded-full text-sm px-4 py-1">
-            Logout
-          </button>
-        </div>
-      </div>
+      <div className="flex items-center justify-between px-6 md:px-16 lg:px-24 xl:px-32 py-4 border-b border-gray-300 bg-white">
+  <Link to="/">
+    <img
+      src="https://dynamic.brandcrowd.com/asset/logo/9222cd62-f6ac-4b55-b9f2-43b4d85ac0e4/logo-search-grid-2x?logoTemplateVersion=1&v=638755756797900000&text=Pharmacy&colorpalette=green"
+      alt="logo"
+      className="cursor-pointer h-12 w-18"
+    />
+  </Link>
+  <div className="flex items-center gap-5 text-gray-500">
+    <p>Hi! Admin</p>
+    <button onClick={logout} className="border rounded-full text-sm px-4 py-1">
+      Logout
+    </button>
+  </div>
+</div>
+
 
       <div className="flex">
         <div className="md:w-64 w-16 border-r h-[95vh] text-base border-gray-300 pt-4 flex flex-col transition-all duration-300">
