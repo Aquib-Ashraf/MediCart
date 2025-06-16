@@ -3,6 +3,10 @@ import { useNavigate } from "react-router-dom";
 import bestsellersData from "../assets/bestsellers";
 import allProductsData from "../assets/products";
 import toast from "react-hot-toast";
+import axios from "axios"
+
+axios.defaults.withCredentials = true;
+axios.defaults.baseURL = import.meta.env.VITE_BACKEND_URL;
 
 export const AppContext = createContext();
 
@@ -17,6 +21,26 @@ export const AppContextProvider = ({ children }) => {
     const [bestsellers, setBestsellers] = useState([]);
     const [cartItems, setCartItems] = useState({});
     const [searchQuery, setSearchQuery] = useState("");
+
+
+    const fetchSeller = async () => {
+    try {
+        console.log('Checking seller auth...'); // Debug log
+        const { data } = await axios.get('api/seller/is-auth');
+        console.log('Seller auth response:', data); // Debug log
+        
+        if (data.success) {
+            setIsSeller(true);
+            console.log('User is a seller'); // Debug log
+        } else {
+            setIsSeller(false);
+            console.log('User is not a seller'); // Debug log
+        }
+    } catch (error) {
+        console.log('Seller auth error:', error); // Debug log
+        setIsSeller(false);
+    }
+};
 
     const fetchProducts = async () => {
         setAllProducts(allProductsData);
@@ -79,6 +103,7 @@ export const AppContextProvider = ({ children }) => {
     };
 
     useEffect(() => {
+        fetchSeller();
         fetchProducts();
     }, []);
 
@@ -100,7 +125,8 @@ export const AppContextProvider = ({ children }) => {
         searchQuery,
         setSearchQuery,
         getCartAmount,
-        getCartCount
+        getCartCount,
+        axios
     };
 
     return (
