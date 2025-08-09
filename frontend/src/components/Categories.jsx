@@ -1,6 +1,6 @@
 import React from 'react';
 import assets from '../assets';
-import categories from '../assets/categories';
+import {categories} from '../assets/assets';
 import { useNavigate } from 'react-router-dom';
 
 function Categories() {

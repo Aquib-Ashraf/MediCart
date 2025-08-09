@@ -13,7 +13,7 @@ const NewsLetter = () => {
                     placeholder="Enter your email id"
                     required
                 />
-                <button type="submit" className="md:px-12 px-8 h-full text-white bg-emerald-500 hover:bg-emerald-600 transition-all cursor-pointer rounded-md rounded-l-none">
+                <button type="submit" className="md:px-12 px-8 h-full text-white bg-primary hover:bg-primary-dull transition-all cursor-pointer rounded-md rounded-l-none">
                     Subscribe
                 </button>
             </form>
@@ -21,4 +21,4 @@ const NewsLetter = () => {
     )
 }
 
-export default  NewsLetter
+export default NewsLetter
